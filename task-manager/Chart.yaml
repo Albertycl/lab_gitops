@@ -1,0 +1,4 @@
+apiVersion: v2
+name: task-manager
+version: 0.1.0
+description: Task Manager app for CI/CD learning
