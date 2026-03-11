@@ -17,7 +17,7 @@ spec:
         severity: critical
       annotations:
         summary: "Flask backend is down"
-        description: "Flask backend instance {{ $labels.instance }} has been unreachable for 1 minute."
+        description: "Flask backend instance {{`{{ $labels.instance }}`}} has been unreachable for 1 minute."
 
     # ─── ALERT: High error rate (>5% of requests are 5xx) ───
     - alert: FlaskBackendHighErrorRate
@@ -32,7 +32,7 @@ spec:
         severity: warning
       annotations:
         summary: "High error rate on Flask backend"
-        description: "Error rate is {{ $value | humanizePercentage }} (threshold: 5%)."
+        description: "Error rate is {{`{{ $value | humanizePercentage }}`}} (threshold: 5%)."
 
     # ─── ALERT: High P95 latency (>1 second) ───
     - alert: FlaskBackendHighLatency
@@ -45,7 +45,7 @@ spec:
         severity: warning
       annotations:
         summary: "High P95 latency on Flask backend"
-        description: "P95 latency is {{ $value }}s (threshold: 1s)."
+        description: "P95 latency is {{`{{ $value }}`}}s (threshold: 1s)."
 
     # ─── ALERT: Pod restarting frequently ───
     - alert: FlaskBackendPodRestarting
@@ -55,4 +55,4 @@ spec:
         severity: warning
       annotations:
         summary: "Flask backend pod restarting frequently"
-        description: "Pod {{ $labels.pod }} has restarted {{ $value }} times in the last hour."
+        description: "Pod {{`{{ $labels.pod }}`}} has restarted {{`{{ $value }}`}} times in the last hour."
