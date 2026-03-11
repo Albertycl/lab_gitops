@@ -1,11 +1,11 @@
 backend:
   image: flask-backend
-  tag: v1              # ← This is what CI/CD will change (v1 → v2)
+  tag: 9f60d5acb6a9a259752e757c6bb437f81a26677d
   replicas: 3
   port: 5000
 
 frontend:
   image: quasar-frontend
-  tag: v1
+  tag: 9f60d5acb6a9a259752e757c6bb437f81a26677d
   replicas: 2
   port: 80
