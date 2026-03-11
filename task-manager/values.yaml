@@ -1,11 +1,11 @@
 backend:
-  image: flask-backend
+  image: ghcr.io/albertycl/flask-backend
   tag: 9f60d5acb6a9a259752e757c6bb437f81a26677d
-  replicas: 3
+  replicas: 2
   port: 5000
 
 frontend:
-  image: quasar-frontend
+  image: ghcr.io/albertycl/quasar-frontend
   tag: 9f60d5acb6a9a259752e757c6bb437f81a26677d
   replicas: 2
   port: 80

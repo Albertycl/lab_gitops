@@ -12,6 +12,8 @@ spec:
       labels:
         app: flask-backend
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: flask-backend
           image: "{{ .Values.backend.image }}:{{ .Values.backend.tag }}"
