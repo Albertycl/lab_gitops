@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-backend
-spec:
+spec:                                           # Deployment spec
   replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: flask-backend
-    spec:
+    spec:                                       # Pod spec
       imagePullSecrets:
         - name: ghcr-secret
       containers:
