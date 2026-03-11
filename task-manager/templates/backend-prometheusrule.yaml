@@ -1,0 +1,58 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: flask-backend-alerts
+  labels:
+    app: flask-backend
+spec:
+  groups:
+  - name: flask-backend.rules
+    rules:
+
+    # ─── ALERT: App is down ───
+    - alert: FlaskBackendDown
+      expr: up{job=~".*flask-backend.*"} == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Flask backend is down"
+        description: "Flask backend instance {{ $labels.instance }} has been unreachable for 1 minute."
+
+    # ─── ALERT: High error rate (>5% of requests are 5xx) ───
+    - alert: FlaskBackendHighErrorRate
+      expr: |
+        (
+          sum(rate(http_requests_total{status=~"5.."}[5m]))
+          /
+          sum(rate(http_requests_total[5m]))
+        ) > 0.05
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High error rate on Flask backend"
+        description: "Error rate is {{ $value | humanizePercentage }} (threshold: 5%)."
+
+    # ─── ALERT: High P95 latency (>1 second) ───
+    - alert: FlaskBackendHighLatency
+      expr: |
+        histogram_quantile(0.95,
+          sum by (le) (rate(http_request_duration_seconds_bucket[5m]))
+        ) > 1.0
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High P95 latency on Flask backend"
+        description: "P95 latency is {{ $value }}s (threshold: 1s)."
+
+    # ─── ALERT: Pod restarting frequently ───
+    - alert: FlaskBackendPodRestarting
+      expr: increase(kube_pod_container_status_restarts_total{namespace="default", container="flask-backend"}[1h]) > 3
+      for: 10m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Flask backend pod restarting frequently"
+        description: "Pod {{ $labels.pod }} has restarted {{ $value }} times in the last hour."

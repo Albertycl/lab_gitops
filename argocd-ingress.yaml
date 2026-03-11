@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Albertycl/lab_gitops.git  # your actual config repo on GitHub
     targetRevision: master                                  # your branch name
-    path: argocd                                     # path to Helm chart in repo
+    path: argocd-ingress                                   # path to Helm chart in repo
   destination:
     server: https://kubernetes.default.svc  # deploy to THIS cluster
     namespace: argocd
