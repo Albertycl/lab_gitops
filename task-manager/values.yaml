@@ -9,3 +9,5 @@ frontend:
   tag: 9f60d5acb6a9a259752e757c6bb437f81a26677d
   replicas: 2
   port: 80
+  host: taskmanager.localhost
+  serviceName: quasar-frontend
