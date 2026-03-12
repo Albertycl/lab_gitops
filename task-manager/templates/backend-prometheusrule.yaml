@@ -4,6 +4,7 @@ metadata:
   name: flask-backend-alerts
   labels:
     app: flask-backend
+    release: my-kube-prometheus-stack
 spec:
   groups:
   - name: flask-backend.rules

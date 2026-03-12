@@ -1,0 +1,4 @@
+apiVersion: v2
+name: pure-flask
+version: 0.1.0
+description: Pure Flask app with Prometheus metrics

@@ -1,0 +1,5 @@
+backend:
+  image: ghcr.io/albertycl/pure-flask
+  tag: latest
+  replicas: 1
+  port: 5001

@@ -4,6 +4,7 @@ metadata:
   name: flask-backend-monitor
   labels:
     app: flask-backend
+    release: my-kube-prometheus-stack
 spec:
   namespaceSelector:
     matchNames:
