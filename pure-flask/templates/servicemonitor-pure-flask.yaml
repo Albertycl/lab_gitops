@@ -16,4 +16,4 @@ spec:
     - default
   selector:
     matchLabels:
-      app: pure-flaskddd
+      app: pure-flask
