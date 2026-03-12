@@ -1,5 +1,5 @@
 backend:
   image: ghcr.io/albertycl/pure-flask
-  tag: latest
+  tag: 16e99ee49ef048a967fc528dad38b60d99d1f2f6
   replicas: 1
   port: 5001
